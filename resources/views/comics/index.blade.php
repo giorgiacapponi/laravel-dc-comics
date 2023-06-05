@@ -27,14 +27,16 @@
             </form>
           </td>
              --}}
-
-                    <form action="{{ Route('comics.destroy', $comic->id) }}" method="POST">
+              
+                    <form id="form"  action="{{ Route('comics.destroy', $comic->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
-                        <td class="td">
-                            <button type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        <td class="td">    
+                          <button type="button" class="btn btn-danger delete" id="delete"><i class="fa-solid fa-trash"></i></button>
                         </td>
+
                     </form>
+               
                 </tr>
             @endforeach
 

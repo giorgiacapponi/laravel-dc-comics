@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
@@ -35,9 +37,9 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $new= $request->all();
+        $new= $request->validated();
         $comic=new Comic();
         $comic->title=$new['title'];
         $comic->description=$new['description'];
@@ -81,9 +83,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateComicRequest $request, $id)
     {
-       $new= $request->all();
+       $new= $request->validated();
        $comic= Comic::findorFail($id);
        $comic->update($new);
        return redirect()->route('comics.show', $comic->id);
